@@ -48,6 +48,36 @@ public class Lecture01 {
 		                    ^ length 0    ^ length 1  ^ length 2  ^ length 3
 		
 		Def: given SIGMA^*, any subset of SIGMA^* is called a language
+		
+		L1 = {LAMBDA, a, aa, aaa, aaaa, ... } // language
+		= { a^0, a^1, a^2, a^3, a^4, ... }
+		= { a^n|n=0,1,2,...} = a^*
+		a^3 EPSILON a^*
+		
+		L2 = {a, a^2, a^3, ... }// collect all powers of A except the ZERO power
+		factor from left or right?
+		 	/     						       \
+		  * = a{ LAMBDA, a, a^2, ...}			= { LAMBDA, a, a^2, ...}a
+		  * = aa^*	= a^+						= a^*a = a^+
+		a^* is a set of all powers of a, including zero power (lambda)
+		a^+ is a set of all powers of a, excluding zero power
+		
+		
+		// need to learn how to write the 'lambda', 'sigma', symbols and exponents
+		 * 
+		 * 
+		 * true or false = a^3 EPSILON a^*b^*
+		 * 
+		 * a^*b^* = {LAMBDA, a, a^2, ...}{LAMBDA, b, b^2, ...}
+		 * 		= {LAMBDA, a, b, a^2, b^2, a^2, ab, b^3, ab^2, a^3, a^2b, ...}
+		 * TRUE
+		 * 
+		 * a^*b^* = b^*a^* ? false - ab is in LHS but not RHS
+		 * a^*b^* = a^* + b^*    // + = union
+		 *LHS = {lambda, a, b, ab, a^2, b^2, ...}
+		 *RHS = {lambda, a, a^2, ...} UNION { lambda, b, b^2, ... }
+		 *	  = {lambda, a, b, a^2, b^2, ...} // ab is on LHS but not RHS
+		 *
 
 		 */
 		
