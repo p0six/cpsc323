@@ -1,9 +1,20 @@
 package com.cpsc323.assignments;
+
+/*
+ * Name			Michael Romero, Austin Suarez, Sean Hillenbrand
+ * Project No.	No. 1
+ * Due Date		Jan 28, 2017
+ * Professor	Ray Ahmadnia
+ * 
+ * Purpose:		This program evaluates postfix expressions. 
+ */
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
 public class Assignment01 {
 	public static void main(String[] args) {
 	  Scanner s = new Scanner(System.in);
