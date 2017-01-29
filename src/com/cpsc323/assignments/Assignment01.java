@@ -2,8 +2,8 @@ package com.cpsc323.assignments;
 
 /*
  * Name			Michael Romero, Austin Suarez, Sean Hillenbrand
- * Project No.	No. 1
- * Due Date		Jan 28, 2017
+ * Project No.	1
+ * Due Date		Feb 02, 2017
  * Professor	Ray Ahmadnia
  * 
  * Purpose:		This program evaluates postfix expressions. 
