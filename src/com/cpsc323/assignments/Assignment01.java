@@ -43,6 +43,7 @@ public class Assignment01 {
 					}
 				} else {
 					System.out.println("Error: Two values must precede an operation.");
+					break;
 				}
 			} else if (c == '$') {
 				System.out.println("\t\tFinal value = " + values.getFirst());		  
