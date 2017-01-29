@@ -1,4 +1,4 @@
-package com.cpsc323.assignments;
+package com.cpsc323.assignments.assignment01;
 
 /*
  * Name			Michael Romero, Austin Suarez, Sean Hillenbrand
