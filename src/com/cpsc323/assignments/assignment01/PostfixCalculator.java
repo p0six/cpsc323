@@ -2,7 +2,7 @@ package com.cpsc323.assignments.assignment01;
 
 /*
  * Name			Michael Romero, Austin Suarez, Sean Hillenbrand
- * Project No.	1
+ * Project No.	1 
  * Due Date		Feb 02, 2017
  * Professor	Ray Ahmadnia
  * 
