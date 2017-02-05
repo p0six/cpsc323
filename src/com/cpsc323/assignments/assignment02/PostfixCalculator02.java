@@ -16,7 +16,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class PostfixCalculator02 {
-	// Modify to be able to accept "ab 22 * c +$" as well as "tom jerry 123 + tom * - $"
 	public static void main(String[] args) {
 	  Scanner s = new Scanner(System.in);
 	  boolean continueLoop = true;
