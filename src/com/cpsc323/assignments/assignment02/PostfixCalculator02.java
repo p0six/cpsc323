@@ -32,7 +32,7 @@ public class PostfixCalculator02 {
 				strTemp += c;
 			} else if (Character.isDigit(c)) {
 				intTemp += c;
-			} else if (c == ' ') {	
+			} else if (c == ' ') {
 				if (!strTemp.isEmpty()) {
 					if (!m.containsKey(strTemp)) {	
 						System.out.print ("\tEnter the value of " + strTemp + ": ");
@@ -43,7 +43,7 @@ public class PostfixCalculator02 {
 				} else if (!intTemp.isEmpty()) {
 					values.addFirst(Integer.parseInt(intTemp));
 					intTemp = "";
-				}					
+				} // if we have additional spaces and no ints or strings to match, ignore.				
 			} else if (c == '*' || c == '+' || c == '-' || c == '/') {
 				if (values.size() >= 2) {
 					int x = values.getFirst(); values.removeFirst();
