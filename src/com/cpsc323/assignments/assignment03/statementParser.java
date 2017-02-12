@@ -52,7 +52,7 @@ public class statementParser {
 				} else if (isNumeric(tokens[i])) { // check if something isNumeric
 					System.out.println(tokens[i] + "\t\tnumber");
 				} else { // either an identifier or not an identifier
-					if (i < tokens.length) {
+					if (i < (tokens.length - 1)) {
 						if (tokens[i+1].equals("=")) {
 							System.out.println(tokens[i] + "\tidentifier");
 						} else {
