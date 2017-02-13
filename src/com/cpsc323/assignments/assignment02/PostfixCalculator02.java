@@ -22,10 +22,9 @@ public class PostfixCalculator02 {
 	  while(continueLoop) {
 		  Map<String, Integer> m = new HashMap<String, Integer>();
 		  Deque<Integer> values = new ArrayDeque<Integer>();
+		  String strTemp = new String(), intTemp = new String();
 		  System.out.print("Enter a postfix expression: ");
 		  String postfix = s.nextLine();
-		  String strTemp = new String();
-		  String intTemp = new String();
 		  for (int i = 0; i < postfix.length(); i++) {
 			char c = postfix.charAt(i);
 			if (Character.isAlphabetic(c)) {
@@ -62,11 +61,14 @@ public class PostfixCalculator02 {
 					break;
 				}
 			} else if (c == '$') {
-				System.out.println("\t\tFinal value = " + values.getFirst());		  
+				System.out.println("\t\tFinal value = " + values.getFirst());
+				break;
 			} else {
 				System.out.println("Error: Invalid postfix input.");
+				break;
 			}
 		  }  
+		  // will exit without result if no '$' in expression, which is fine
 		  System.out.print("Continue(y/n)? "); 
 		  if (s.nextLine().charAt(0) == 'n') { continueLoop = false; }
 	  }
