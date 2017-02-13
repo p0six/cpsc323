@@ -12,10 +12,11 @@ package com.cpsc323.assignments.assignment03;
  * 	or	"int i = 5 ; while ( i <= 10 ) cout<< myEye ;"
  */
 
-import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Deque;
+import java.util.List;
 import java.util.Scanner;
+
 
 public class statementParser {
 	
@@ -29,9 +30,9 @@ public class statementParser {
 	}
 	
 	public static void main(String[] args) {		
-		Deque<String> reservedWords = new ArrayDeque<String>(Arrays.asList("cout<<", "for", "int", "while"));
-		Deque<String> special = new ArrayDeque<String>(Arrays.asList("=","*","-",";","(",")","<=","+"));
-		Deque<String> identifiers = new ArrayDeque<String>();
+		List<String> reservedWords = Arrays.asList("cout<<", "for", "int", "while");
+		List<String> special = Arrays.asList("=","*","-",";","(",")","<=","+");
+		List<String> identifiers = new ArrayList<String>();
 		Scanner s = new Scanner(System.in);
 		boolean continueLoop = true;
 		while(continueLoop) {			
@@ -51,7 +52,7 @@ public class statementParser {
 					if (i < (tokens.length - 1)) { // handles boundary of tokens[i+1] below
 						if (tokens[i+1].equals("=")) {
 							System.out.println(tokens[i] + "\tidentifier");
-							identifiers.addLast(tokens[i]);	
+							identifiers.add(tokens[i]);
 						} else {
 							System.out.println(tokens[i] + "\tnot identifier");
 						}
