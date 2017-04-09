@@ -104,9 +104,9 @@ public class assignment09 {
 					for (int i = 0; i < (2*rules[tableMod - 1][1].length()); i++ ) {
 						myStack.pop(); System.out.println("stack = " + myStack.toString());
 					}
-					topStack = myStack.pop(); System.out.println("stack = " + myStack.toString()); // redundant
-					tableVal = table[Integer.parseInt(topStack)][getIndex(rules[tableMod - 1][0].charAt(0))]; // unique
-					System.out.println("goto: " + tableVal); // redundant
+					topStack = myStack.pop(); System.out.println("stack = " + myStack.toString());
+					tableVal = table[Integer.parseInt(topStack)][getIndex(rules[tableMod - 1][0].charAt(0))]; // goto 
+					System.out.println("goto: " + tableVal);
 					myStack.push(topStack); System.out.println("stack = " + myStack.toString());
 					myStack.push(rules[tableMod - 1][0]); System.out.println("stack = " + myStack.toString());
 					tableMod = (tableVal % 100);
@@ -117,8 +117,6 @@ public class assignment09 {
 					myStack.push(currentCharacter.toString()); System.out.println("stack = " + myStack.toString());
 					myStack.push(tableMod.toString()); System.out.println("stack = " + myStack.toString());
 					index++;
-				} else { // goto
-					System.out.println("never arrive");
 				}
 			}
 		}
