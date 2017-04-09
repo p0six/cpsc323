@@ -2,6 +2,15 @@ package com.cpsc323.assignments.assignment09;
 import java.util.ArrayDeque;
 import java.util.Scanner;
 
+/*
+ * Name			Michael Romero, Austin Suarez, Sean Hillenbrand
+ * Project No.	9 
+ * Due Date		Apr 13, 2017
+ * Professor	Ray Ahmadnia
+ * 
+ * Purpose:		LR Parser 
+ */
+
 public class assignment09 {
 	static int table[][] = { //LR Parsing Table
             // i	+	  -	   *	/	(	 )	  $	   E	T    F
