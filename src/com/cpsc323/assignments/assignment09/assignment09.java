@@ -1,5 +1,8 @@
 package com.cpsc323.assignments.assignment09;
+
 import java.util.ArrayDeque;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /*
@@ -40,92 +43,77 @@ public class assignment09 {
             {"T", "F"},
             {"F", "(E)"},
             {"F", "i"}};
-    
-	public static Integer getIndex(Character x) {
-		int index = -1;
-		switch (x) {
-		case 'i':
-			index = 0;
-			break;
-		case '+':
-			index = 1;
-			break;
-		case '-':
-			index = 2;
-			break;
-		case '*':
-			index = 3;
-			break;
-		case '/':
-			index = 4;
-			break;
-		case '(':
-			index = 5;
-			break;
-		case ')':
-			index = 6;
-			break;
-		case '$':
-			index = 7;
-			break;
-		case 'E':
-			index = 8;
-			break;
-		case 'T':
-			index = 9;
-			break;
-		case 'F':
-			index = 10;
-			break;
-		default:
-			break;	
+	
+	static Character characterIndex[] = {'i','+','-','*','/','(',')','$','E','T','F'};
+		
+	public static void printAsStack(ArrayDeque<String> d) { // makes output easier to read
+		Iterator<String> it = d.descendingIterator();
+		System.out.print("stack = [ ");
+		while (it.hasNext()) {
+			System.out.print("\"" + it.next() + "\"");
+			if (it.hasNext()) {
+				System.out.print(", ");
+			} 
 		}
-		return index;
+		System.out.println(" ]");
 	}
 	
 	public static void main(String[] args) {
+		HashMap<Character,Integer> myMap = new HashMap<Character,Integer>();
+		for (int i = 0; i < characterIndex.length; i++) {
+			myMap.put(characterIndex[i], i);
+		}
+		
 		ArrayDeque<String> myStack = new ArrayDeque<String>();
 		Scanner s = new Scanner(System.in);
 		System.out.print("Enter a valid string: ");
 		String st = s.nextLine();
-		Integer index = 0, tableVal, tableMod = 0;
+		Integer index = 0, tableVal, tableMod = 1;
 		Character currentCharacter;
 		String topStack;
-		System.out.println("stack = " + myStack.toString());
-		myStack.push("0"); System.out.println("stack = " + myStack.toString());
+		printAsStack(myStack);
+		myStack.push("0"); printAsStack(myStack);
+		boolean reduced = false;
 		while (index < st.length()) {
-			topStack = myStack.pop(); System.out.println("stack = " + myStack.toString());
+			topStack = myStack.pop(); printAsStack(myStack);
 			currentCharacter = st.charAt(index);
-			if (getIndex(currentCharacter) == -1) {
+			if (!myMap.containsKey(currentCharacter)) {
 				System.out.println("Rejected - Character " + currentCharacter + " does not exist in grammar");
 				break;
 			} else {
-				tableVal = table[Integer.parseInt(topStack)][getIndex(currentCharacter)];
-				if (tableVal % 500 >= 0 && tableVal % 500 < 100) { // some type of failure..
-					System.out.println("Rejected");
-					break;
-				} else if (tableVal == 400) {	
+				if (reduced) {  // after a reduce operation, goto case has special tableVal
+					tableVal = table[Integer.parseInt(topStack)][myMap.get(rules[tableMod - 1][0].charAt(0))];
+					reduced = false;
+				} else { 
+					tableVal = table[Integer.parseInt(topStack)][myMap.get(currentCharacter)];
+				}
+				
+				if (tableVal == 400) {	// accepted
 					System.out.println("accepted");
 					break;
-				} else if (tableVal % 200 >= 0 && tableVal % 200 < 100) { // reduce
+				} else if (tableVal >= 500) { // rejected
+					System.out.println("Rejected: unexpected character " + characterIndex[tableVal % 500]);
+					break;
+				} else if (tableVal >= 200 && tableVal < 300) { // reduce
 					tableMod = (tableVal % 200);
-					myStack.push(topStack); System.out.println("stack = " + myStack.toString());
+					System.out.println("reduce: " + tableMod);
+					myStack.push(topStack); printAsStack(myStack);
 					for (int i = 0; i < (2*rules[tableMod - 1][1].length()); i++ ) {
-						myStack.pop(); System.out.println("stack = " + myStack.toString());
+						myStack.pop(); printAsStack(myStack);
 					}
-					topStack = myStack.pop(); System.out.println("stack = " + myStack.toString());
-					tableVal = table[Integer.parseInt(topStack)][getIndex(rules[tableMod - 1][0].charAt(0))]; // goto 
-					System.out.println("goto: " + tableVal);
-					myStack.push(topStack); System.out.println("stack = " + myStack.toString());
-					myStack.push(rules[tableMod - 1][0]); System.out.println("stack = " + myStack.toString());
+					reduced = true;
+				} else if (tableVal >= 100 && tableVal < 200) { // switch
 					tableMod = (tableVal % 100);
-					myStack.push(tableMod.toString()); System.out.println("stack = " + myStack.toString());
-				} else if (tableVal % 100 >= 0 && tableVal % 100 < 100) { // switch
-					tableMod = (tableVal % 100);
-					myStack.push(topStack); System.out.println("stack = " + myStack.toString());
-					myStack.push(currentCharacter.toString()); System.out.println("stack = " + myStack.toString());
-					myStack.push(tableMod.toString()); System.out.println("stack = " + myStack.toString());
+					System.out.println("switch: " + tableMod);
+					myStack.push(topStack); printAsStack(myStack);
+					myStack.push(currentCharacter.toString()); printAsStack(myStack);
+					myStack.push(tableMod.toString()); printAsStack(myStack);
 					index++;
+				} else { // goto
+					System.out.println("goto: " + tableVal);
+					myStack.push(topStack); printAsStack(myStack);
+					myStack.push(rules[tableMod - 1][0]); printAsStack(myStack);
+					myStack.push(tableVal.toString()); printAsStack(myStack);
 				}
 			}
 		}
